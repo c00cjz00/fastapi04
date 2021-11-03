@@ -1,0 +1,25 @@
+{% include "header.html" %}
+
+     <!-- .container -->
+     <main role="main" class="container"><br><br><br>
+      <div class="starter-template">
+      <h1>圖片上傳服務系統</h1>
+      <!-- 新增在這裡 -->
+        <form enctype="multipart/form-data" method="post">            
+          <div class="form-group">
+            <label for="review">上傳圖片:</label>
+            <input type="file" class="form-control" placeholder="Enter content" name="file">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <div class="form-group">
+        <br> <br>    
+            <label for="review"><h2>{{ result }}</h2></label><br>
+            <img src="{{upload_image}}" width="400">
+        </div>
+      <!-- 結束在這裡 -->
+      </div>
+    </main>
+    <!-- /.container -->
+    
+{% include "footer.html" %} 

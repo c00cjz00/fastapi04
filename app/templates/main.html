@@ -1,0 +1,21 @@
+{% include "header.html" %}
+
+     <!-- .container -->
+     <main role="main" class="container">
+      <div class="starter-template">
+        <h1>數字填寫送出測試</h1>
+      <!-- 新增在這裡 -->
+        <form method="post">
+          <div class="form-group">
+            <label for="number">輸入數字:</label>
+            <input type="number" class="form-control" placeholder="Enter number" name="num">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <p>Result: {{ result }}</p>      
+      <!-- 結束在這裡 -->
+      </div>
+    </main>
+    <!-- /.container -->
+    
+{% include "footer.html" %}    
