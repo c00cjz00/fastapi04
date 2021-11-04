@@ -14,6 +14,7 @@ from fastapi.staticfiles import StaticFiles
 
 ## FASTAI Library
 from fastai.vision.all import *
+defaults.device = torch.device('cpu')
 
 ## 服務器
 #import nest_asyncio
@@ -34,7 +35,8 @@ app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
 myPath='models'
 myModel_01=myPath+'/mnist.pkl'
 myModel_02=myPath+'/nodule.pkl'
-
+learn1 = load_learner(myModel_01)
+learn2 = load_learner(myModel_02)
 
 ## 首頁 
 @app.get('/')
@@ -88,8 +90,7 @@ def form_post(request: Request, file: UploadFile = File(...)):
     with open(upload_image, 'wb') as buffer:
         shutil.copyfileobj(file.file, buffer)
     
-    learn = load_learner(myModel_01)
-    prediction = learn.predict(upload_image) 
+    prediction = learn1.predict(upload_image) 
     result = '圖片預測結果: ' + prediction[0]
     return templates.TemplateResponse('uploadFile_mnist.html', context={'request': request, 'result': result, 'upload_image': html_upload_image})
   
@@ -109,8 +110,7 @@ def form_post(request: Request, file: UploadFile = File(...)):
     with open(upload_image, 'wb') as buffer:
         shutil.copyfileobj(file.file, buffer)
 
-    learn = load_learner(myModel_02)
-    prediction = learn.predict(upload_image) 
+    prediction = learn2.predict(upload_image) 
     result = '圖片預測結果: ' + prediction[0]
     return templates.TemplateResponse('uploadFile_nodule.html', context={'request': request, 'result': result, 'upload_image': html_upload_image})
   
