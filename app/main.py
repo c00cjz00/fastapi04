@@ -135,3 +135,7 @@ async def form_post(request: Request, file: UploadFile = File(...)):
     result = '圖片預測結果: ' + prediction[0]
     return templates.TemplateResponse('uploadFile_nodule.html', context={'request': request, 'result': result, 'upload_image': html_upload_image})
   
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=80)
