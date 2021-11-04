@@ -1,5 +1,4 @@
 # 範例二 網頁執行預測
-# https://github.com/BoxOfCereal/FastAPI-Fastai2/blob/master/app/server.py
 ## 檔案路徑
 import os
 ## 檔案上傳 Library
@@ -18,7 +17,6 @@ from fastai.vision.all import *
 defaults.device = torch.device('cpu')
 
 ## 服務器
-import asyncio
 #import nest_asyncio
 #from pyngrok import ngrok
 #import uvicorn
@@ -43,9 +41,9 @@ learn2 = None
 async def startup_event():
     """Setup the learner on server start"""
     global learn1, learn2
-    #loop = asyncio.get_event_loop()  # get event loop
-    #tasks = [asyncio.ensure_future(setup_learner())]  # assign some task
-    #learn = (await asyncio.gather(*tasks))[0]  # get tasks
+    loop = asyncio.get_event_loop()  # get event loop
+    tasks = [asyncio.ensure_future(setup_learner())]  # assign some task
+    learn = (await asyncio.gather(*tasks))[0]  # get tasks
 
     # 模型檔案
     myPath='models'
