@@ -58,8 +58,9 @@ async def startup_event():
     # 啟動學習
     learn1 = load_learner(myModel_01)
     learn1.dls.device = 'cpu'
-    learn2 = load_learner(myModel_02)
-    learn2.dls.device = 'cpu'
+    learn2 = learn1
+    #learn2 = load_learner(myModel_02)
+    #learn2.dls.device = 'cpu'
 
 
 ## 首頁 
